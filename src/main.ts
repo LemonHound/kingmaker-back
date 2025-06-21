@@ -6,18 +6,21 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Global validation
-  app.useGlobalPipes(new ValidationPipe({
-    whitelist: true,
-    forbidNonWhitelisted: true,
-    transform: true,
-  }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
 
   // CORS for your frontend
   app.enableCors({
-    origin: ['http://localhost:3001',
+    origin: [
+      'http://localhost:3001',
       'http://localhost:3000',
       'https://inisgorm.xyz',
-      'https://www.inisgorm.xyz'
+      'https://www.inisgorm.xyz',
     ],
     credentials: true,
   });

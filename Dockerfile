@@ -1,4 +1,7 @@
-FROM ubuntu:latest
-LABEL authors="seiwe"
-
-ENTRYPOINT ["top", "-b"]
+FROM node:24-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+CMD ["npm", "run", "start:prod"]
